@@ -1,0 +1,25 @@
+.answer--button{
+    border-radius: 15px;
+    width: auto;
+    height: 35px;
+    border:transparent;
+    margin: 10px;
+}
+
+.not-check{
+    border: 1px solid #4D5B9E;
+    background-color: transparent;
+}
+
+.not-check:hover{
+    background-color: #8493df;
+}
+
+.not-check-selected{
+    background-color: #8493df;
+}
+
+
+.check{
+    
+}
