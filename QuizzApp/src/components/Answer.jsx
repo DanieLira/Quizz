@@ -2,10 +2,17 @@ import React from "react"
 import "../styles/Answer.css"
 
 export default function Answer(props){
+
     const checkedClass = props.isBeingChecked ? "check" : "not-check"
-    const classes = `answer--button ${checkedClass}`
+    const selectedClass = props.selected ? "not-check-selected" : ""
+    const classes = `answer--button ${checkedClass} ${selectedClass}`
     
     return(
-        <button className={classes}>{props.description}</button>
+        <button 
+            name={props.description}
+            className={classes}
+            onClick={ event => props.handleClick(event)}>
+            {props.description}
+        </button>
     )
 }
