@@ -20,6 +20,14 @@
 }
 
 
-/* .check{
-    
-} */
+.checked-not-selected{
+    opacity: 0.5;
+}
+
+.checked-selected-wrong{
+    background-color: #F8BCBC;
+}
+
+.checked-correct{
+    background-color: #94D7A2;
+}

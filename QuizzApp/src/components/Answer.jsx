@@ -3,9 +3,23 @@ import "../styles/Answer.css"
 
 export default function Answer(props){
 
-    const checkedClass = props.isBeingChecked ? "check" : "not-check"
-    const selectedClass = props.selected ? "not-check-selected" : ""
-    const classes = `answer--button ${checkedClass} ${selectedClass}`
+
+    let checkedClass
+    if(props.isBeingChecked){
+        if(props.isCorrect){
+            checkedClass = "checked-correct"
+        }
+        
+        if(!props.isCorrect && props.selected){
+            checkedClass = "checked-selected-wrong"
+        }
+    }else{
+        if(props.selected){
+            checkedClass = "not-check-selected"
+        }
+    }
+
+    const classes = `answer--button ${checkedClass}`
     
     return(
         <button 

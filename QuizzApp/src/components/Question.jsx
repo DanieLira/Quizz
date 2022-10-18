@@ -24,11 +24,11 @@ export default function Question(props){
     //TODO: Insert the correct answer into the array at a random index, or randomize the order at the end.
     answerElements.push(
         <Answer 
-            key={index}
+            key={answerElements.length}
             handleClick={changeSelected}
-            selected={elem === selectedAnswer}
-            description={elem} 
-            isCorrect={false}
+            selected={props.data.correct_answer === selectedAnswer}
+            description={props.data.correct_answer} 
+            isCorrect={true}
             isBeingChecked={props.isBeingChecked}
         />
     )
