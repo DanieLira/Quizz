@@ -4,11 +4,20 @@ import Answer from "./Answer"
 export default function Question(props){
 
     const [selectedAnswer, setSelectedAnswser] = React.useState("")
+    const [hasQuestionBeenAnsweredCorrectly, setHasQuestionBeenAnsweredCorrectly] = React.useState(false)
 
-    function changeSelected(event){
+    function changeSelected(event, isCorrect){
         const {name} = event.target
+        
+        if(name !== selectedAnswer){
+            props.handleScore(isCorrect, hasQuestionBeenAnsweredCorrectly)
+            setHasQuestionBeenAnsweredCorrectly(isCorrect)
+        }
+        
         setSelectedAnswser(name)
     }
+
+
 
     let incorrectAnswers = props.data.incorrect_answers.map((elem, index)=> {
         return <Answer 

@@ -7,11 +7,33 @@ export default function Quiz(props){
     const [isQuizBeingChecked, setIsQuizBeingChecked] = React.useState(false)
     const [score, setScore] = React.useState(0)
 
+    function handleScore(isCorrect, hasQuestionBeenAnsweredCorrectly){
+
+        setScore(prevScore=>{
+            if(isCorrect && !hasQuestionBeenAnsweredCorrectly){
+                return prevScore + 1
+            }
+
+            if(!isCorrect && hasQuestionBeenAnsweredCorrectly){
+                return prevScore - 1
+            }
+            
+            if(isCorrect && hasQuestionBeenAnsweredCorrectly){
+                return prevScore
+            }
+
+            if(!isCorrect && !hasQuestionBeenAnsweredCorrectly){
+                return prevScore
+            }
+        })
+    }
+
     const questionElements = props.quiz.map((elem, index) => {
         return <Question 
             key={index} 
             data={elem} 
             isBeingChecked={isQuizBeingChecked}
+            handleScore={handleScore}
         />
     })
 
