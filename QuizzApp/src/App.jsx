@@ -11,15 +11,15 @@ function App() {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
       .then(data => data.json())
       .then(dataAsJson => setQuiz(dataAsJson.results))
-  },[])
+  },[hasQuizStarted])
 
-  function startQuiz(){
+  function resetQuiz(){
     setHasQuizStarted(prevState => !prevState)
   }
 
   return (
     <div className="App">
-      {hasQuizStarted ? <Quiz quiz={quiz}/> : <IntroPage startQuiz={startQuiz}/>}
+      {hasQuizStarted ? <Quiz quiz={quiz} setQuiz={resetQuiz}/> : <IntroPage setQuiz={resetQuiz}/>}
     </div>
   )
 }

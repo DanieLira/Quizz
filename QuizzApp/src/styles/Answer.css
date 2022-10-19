@@ -4,6 +4,7 @@
     height: 35px;
     border:transparent;
     margin: 10px;
+    color:black;
 }
 
 .not-check{
@@ -31,3 +32,4 @@
 .checked-correct{
     background-color: #94D7A2;
 }
+

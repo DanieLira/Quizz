@@ -3,30 +3,34 @@ import "../styles/Answer.css"
 
 export default function Answer(props){
 
+    function getCheckedClass(){
+        if(props.isBeingChecked){
+            if(props.isCorrect){
+                return "checked-correct"
+            }
+            
+            if(!props.isCorrect && props.selected){
+                return "checked-selected-wrong"
+            }
 
-    let checkedClass
-    if(props.isBeingChecked){
-        if(props.isCorrect){
-            checkedClass = "checked-correct"
+            return "checked-not-selected"
+        }else{
+            if(props.selected){
+                return "not-check-selected"
+            }
         }
-        
-        if(!props.isCorrect && props.selected){
-            checkedClass = "checked-selected-wrong"
-        }
-    }else{
-        if(props.selected){
-            checkedClass = "not-check-selected"
-        }
+
     }
+    const classes = `answer--button ${getCheckedClass()}`
+    const answerDescription = props.description.replaceAll("&quot;",'"').replaceAll("&#039;","'")
 
-    const classes = `answer--button ${checkedClass}`
-    
     return(
         <button 
             name={props.description}
             className={classes}
-            onClick={ event => props.handleClick(event)}>
-            {props.description}
+            onClick={ event => props.handleClick(event, props.isCorrect)}
+            disabled={props.isBeingChecked}>  
+            {answerDescription}
         </button>
     )
 }

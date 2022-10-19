@@ -9,7 +9,7 @@ export default function Quiz(props){
 
     function handleScore(isCorrect, hasQuestionBeenAnsweredCorrectly){
 
-        setScore(prevScore=>{
+        setScore(prevScore => {
             if(isCorrect && !hasQuestionBeenAnsweredCorrectly){
                 return prevScore + 1
             }
