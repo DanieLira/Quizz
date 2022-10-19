@@ -7,12 +7,13 @@ export default function Question(props){
     const [hasQuestionBeenAnsweredCorrectly, setHasQuestionBeenAnsweredCorrectly] = React.useState(false)
     const [randomIndex, setRandomIndex] = React.useState(0)
 
-    function changeSelected(event, isCorrect){
+    function changeSelected(event, isCorrectAnswer){
         const {name} = event.target
         
+        //If user is selecting the same answer, there is no need to update the score.
         if(name !== selectedAnswer){
-            props.handleScore(isCorrect, hasQuestionBeenAnsweredCorrectly)
-            setHasQuestionBeenAnsweredCorrectly(isCorrect)
+            props.handleScore(isCorrectAnswer, hasQuestionBeenAnsweredCorrectly)
+            setHasQuestionBeenAnsweredCorrectly(isCorrectAnswer)
         }
         
         setSelectedAnswser(name)
@@ -42,9 +43,10 @@ export default function Question(props){
         />
     )
     
-    const questionDescription = props.data.question.replaceAll("&quot;",'"').replaceAll("&#039;","'").replaceAll("&rsquo;","’")
+    const questionDescription = props.data.question.replaceAll("&quot;",'"').replaceAll("&#039;","'").replaceAll("&rsquo;","'")
     
-    const suffledAnswers = answerElements.splice(randomIndex, 0, correctAnswer)
+    //Insert the correct answer into a random position
+    answerElements.splice(randomIndex, 0, correctAnswer)
 
     React.useEffect(() => {
         const _randomIndex = Math.floor(Math.random() * (answerElements.length))
