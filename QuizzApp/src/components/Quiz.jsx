@@ -5,6 +5,7 @@ import "../styles/Quiz.css"
 export default function Quiz(props){
 
     const [isQuizBeingChecked, setIsQuizBeingChecked] = React.useState(false)
+    const [score, setScore] = React.useState(0)
 
     const questionElements = props.quiz.map((elem, index) => {
         return <Question 
@@ -25,8 +26,8 @@ export default function Quiz(props){
     if (isQuizBeingChecked) {
       button =
       <>
-        <h4>You scored 3/5 correct answers</h4>
-        <button className="quiz--check-answers-button">Play Again</button>
+        <h4>You scored {score}/5 correct answers</h4>
+        <button className="quiz--check-answers-button" onClick={props.setQuiz}>Play Again</button>
       </>;
     } 
 

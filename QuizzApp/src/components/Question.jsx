@@ -10,7 +10,7 @@ export default function Question(props){
         setSelectedAnswser(name)
     }
 
-    let answerElements = props.data.incorrect_answers.map((elem, index)=> {
+    let incorrectAnswers = props.data.incorrect_answers.map((elem, index)=> {
         return <Answer 
                     key={index}
                     handleClick={changeSelected}
@@ -22,20 +22,24 @@ export default function Question(props){
     })
 
     //TODO: Insert the correct answer into the array at a random index, or randomize the order at the end.
-    answerElements.push(
-        <Answer 
-            key={answerElements.length}
-            handleClick={changeSelected}
-            selected={props.data.correct_answer === selectedAnswer}
-            description={props.data.correct_answer} 
-            isCorrect={true}
-            isBeingChecked={props.isBeingChecked}
-        />
-    )
-    
+    const correctAnswer =   <Answer 
+                                key={incorrectAnswers.length}
+                                handleClick={changeSelected}
+                                selected={props.data.correct_answer === selectedAnswer}
+                                description={props.data.correct_answer} 
+                                isCorrect={true}
+                                isBeingChecked={props.isBeingChecked}
+                            />
+
+    let answerElements = incorrectAnswers.slice()
+    const randomIndex = Math.floor(Math.random() * (incorrectAnswers.length - 0)) + 1
+    answerElements.splice(randomIndex, 0, correctAnswer)
+
+    const questionDescription = props.data.question.replaceAll("&quot;",'"').replaceAll("&#039;","'")
+
     return(
         <div>
-            <h3 className="question--description">{props.data.question}</h3>
+            <h3 className="question--description">{questionDescription}</h3>
             {answerElements}
             <hr/>
         </div>
