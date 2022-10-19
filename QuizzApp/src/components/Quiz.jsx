@@ -9,7 +9,7 @@ export default function Quiz(props){
     const [quiz, setQuiz] = React.useState([])
 
     React.useEffect(()=>{
-        fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+        fetch(props.url)
           .then(data => data.json())
           .then(dataAsJson => setQuiz(dataAsJson.results))
     },[])
@@ -49,7 +49,7 @@ export default function Quiz(props){
     
     const playAgainButton = (
         <>
-            <h4>You scored {score}/5 correct answers</h4>
+            <h4>You scored {score}/{questionElements.length} correct answers</h4>
             <button className="quiz--check-answers-button" onClick={props.setQuiz}>Play Again</button>
         </>
     )
