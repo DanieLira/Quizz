@@ -5,6 +5,7 @@ export default function Question(props){
 
     const [selectedAnswer, setSelectedAnswser] = React.useState("")
     const [hasQuestionBeenAnsweredCorrectly, setHasQuestionBeenAnsweredCorrectly] = React.useState(false)
+    const [randomIndex, setRandomIndex] = React.useState(0)
 
     function changeSelected(event, isCorrect){
         const {name} = event.target
@@ -17,34 +18,38 @@ export default function Question(props){
         setSelectedAnswser(name)
     }
 
-
-
-    let incorrectAnswers = props.data.incorrect_answers.map((elem, index)=> {
-        return <Answer 
-                    key={index}
-                    handleClick={changeSelected}
-                    selected={elem === selectedAnswer}
-                    description={elem} 
-                    isCorrect={false}
-                    isBeingChecked={props.isBeingChecked}
-                />
+    const answerElements = props.data.incorrect_answers.map((elem, index)=> {
+        return (
+            <Answer 
+                key={index}
+                handleClick={changeSelected}
+                selected={elem === selectedAnswer}
+                description={elem} 
+                isCorrect={false}
+                isBeingChecked={props.isBeingChecked}
+            />
+        )
     })
 
-    //TODO: Insert the correct answer into the array at a random index, or randomize the order at the end.
-    const correctAnswer =   <Answer 
-                                key={incorrectAnswers.length}
-                                handleClick={changeSelected}
-                                selected={props.data.correct_answer === selectedAnswer}
-                                description={props.data.correct_answer} 
-                                isCorrect={true}
-                                isBeingChecked={props.isBeingChecked}
-                            />
+    const correctAnswer = (
+        <Answer 
+            key={answerElements.length}
+            handleClick={changeSelected}
+            selected={props.data.correct_answer === selectedAnswer}
+            description={props.data.correct_answer} 
+            isCorrect={true}
+            isBeingChecked={props.isBeingChecked}
+        />
+    )
+    
+    const questionDescription = props.data.question.replaceAll("&quot;",'"').replaceAll("&#039;","'").replaceAll("&rsquo;","’")
+    
+    const suffledAnswers = answerElements.splice(randomIndex, 0, correctAnswer)
 
-    let answerElements = incorrectAnswers.slice()
-    const randomIndex = Math.floor(Math.random() * (incorrectAnswers.length - 0)) + 1
-    answerElements.splice(randomIndex, 0, correctAnswer)
-
-    const questionDescription = props.data.question.replaceAll("&quot;",'"').replaceAll("&#039;","'")
+    React.useEffect(() => {
+        const _randomIndex = Math.floor(Math.random() * (answerElements.length))
+        setRandomIndex(_randomIndex)
+    },[])
 
     return(
         <div>
@@ -54,3 +59,17 @@ export default function Question(props){
         </div>
     )
 }
+
+
+    
+    
+    //function shuffleAnswers(answers) {
+    //     let _suffledAnswers = answers
+    //     for (let i = answers.length - 1; i > 0; i--) {
+    //         const j = Math.floor(Math.random() * (i + 1));
+    //         [_suffledAnswers[i], _suffledAnswers[j]] = [_suffledAnswers[j], _suffledAnswers[i]];
+    //     }
+    //     return _suffledAnswers
+    // }
+
+    // const suffledAnswers = shuffleAnswers(answerElements)

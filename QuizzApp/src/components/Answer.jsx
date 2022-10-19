@@ -22,7 +22,7 @@ export default function Answer(props){
 
     }
     const classes = `answer--button ${getCheckedClass()}`
-    const answerDescription = props.description.replaceAll("&quot;",'"').replaceAll("&#039;","'")
+    const answerDescription = props.description.replaceAll("&quot;",'"').replaceAll("&#039;","'").replaceAll("&rsquo;","’")
 
     return(
         <button 

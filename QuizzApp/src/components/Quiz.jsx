@@ -6,29 +6,29 @@ export default function Quiz(props){
 
     const [isQuizBeingChecked, setIsQuizBeingChecked] = React.useState(false)
     const [score, setScore] = React.useState(0)
+    const [quiz, setQuiz] = React.useState([])
+
+    React.useEffect(()=>{
+        console.log("Calling API")
+        fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+          .then(data => data.json())
+          .then(dataAsJson => setQuiz(dataAsJson.results))
+    },[])
 
     function handleScore(isCorrect, hasQuestionBeenAnsweredCorrectly){
 
         setScore(prevScore => {
-            if(isCorrect && !hasQuestionBeenAnsweredCorrectly){
+            if(isCorrect && !hasQuestionBeenAnsweredCorrectly)
                 return prevScore + 1
-            }
 
-            if(!isCorrect && hasQuestionBeenAnsweredCorrectly){
+            if(!isCorrect && hasQuestionBeenAnsweredCorrectly)
                 return prevScore - 1
-            }
             
-            if(isCorrect && hasQuestionBeenAnsweredCorrectly){
-                return prevScore
-            }
-
-            if(!isCorrect && !hasQuestionBeenAnsweredCorrectly){
-                return prevScore
-            }
+            return prevScore            
         })
     }
 
-    const questionElements = props.quiz.map((elem, index) => {
+    const questionElements = quiz.map((elem, index) => {
         return <Question 
             key={index} 
             data={elem} 
@@ -55,8 +55,8 @@ export default function Quiz(props){
 
     return(
         <div>
-            {questionElements}
-            {button}
+            {quiz.length === 0 ? <h1>Loading...</h1> : questionElements}
+            {quiz.length !== 0 && button}
         </div>
     )
 }
