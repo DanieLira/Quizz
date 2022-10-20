@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 body{
     font-family:'Karla', Times;
     background-color: #F5F7FB;

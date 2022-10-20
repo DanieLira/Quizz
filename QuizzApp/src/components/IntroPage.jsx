@@ -1,15 +1,12 @@
 import React from "react"
 import QuizParametersSelector from "./QuizParametersSelector"
-import "../styles/IntroPage.css"
 
 export default function IntroPage(props){
+    //TODO: ADD DARK MODE
     return(
-        <div className="intro-page--container">
-            <h1>TODO:</h1>
-            <h5>Add style</h5>
-            <h2 className="intro-page--title">Quizzical</h2>
-            <h5 className="intro-page--description">Lets celebrate my first React project with a nice quiz! 🥳</h5>
-            {/* <button onClick={props.setQuiz} className="intro-page--button">Start Quiz</button> */}
+        <div className="flex flex-col items-center">
+            <h2 className="text-4xl font-semibold my-6">Quizzical</h2>
+            <h5 className="text-base font-normal my-6">Lets celebrate my first React project with a nice quiz! <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">🥳</a></h5>
             <QuizParametersSelector setQuiz={data => props.setQuiz(data)}/>
         </div>
     )

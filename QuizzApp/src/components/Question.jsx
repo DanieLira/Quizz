@@ -55,23 +55,9 @@ export default function Question(props){
 
     return(
         <div>
-            <h3 className="question--description">{questionDescription}</h3>
+            <h3 className="font-bold text-xl my-3 max-w-4xl">{questionDescription}</h3>
             {answerElements}
-            <hr/>
+            <hr className="bg-indigo-200 my-5"/>
         </div>
     )
 }
-
-
-    
-    
-    //function shuffleAnswers(answers) {
-    //     let _suffledAnswers = answers
-    //     for (let i = answers.length - 1; i > 0; i--) {
-    //         const j = Math.floor(Math.random() * (i + 1));
-    //         [_suffledAnswers[i], _suffledAnswers[j]] = [_suffledAnswers[j], _suffledAnswers[i]];
-    //     }
-    //     return _suffledAnswers
-    // }
-
-    // const suffledAnswers = shuffleAnswers(answerElements)

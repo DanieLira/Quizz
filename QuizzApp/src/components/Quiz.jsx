@@ -1,6 +1,5 @@
 import React from "react"
 import Question from "./Question"
-import "../styles/Quiz.css"
 
 export default function Quiz(props){
 
@@ -42,22 +41,24 @@ export default function Quiz(props){
     }
 
     const checkAnswersButton = ( 
-        <button className="quiz--check-answers-button" onClick={checkQuiz}>
-            Check Answers
-        </button>
+        <div className="w-full flex justify-center">
+            <button className="bg-indigo-600 w-72 h-14 rounded-2xl text-white my-4 text-xl" onClick={checkQuiz}>
+                Check Answers
+            </button>
+        </div>
     )
     
     const playAgainButton = (
-        <>
+        <div className="w-full flex  flex-col items-center">
             <h4>You scored {score}/{questionElements.length} correct answers</h4>
-            <button className="quiz--check-answers-button" onClick={props.setQuiz}>Play Again</button>
-        </>
+            <button className="bg-indigo-600 w-72 h-14 rounded-2xl text-white my-4 text-xl" onClick={props.setQuiz}>Play Again</button>
+        </div>
     )
 
     return(
-        <div>
+        <div className="flex flex-col">
             {quiz.length === 0 ? 
-            <h1>Loading...</h1> : 
+            <h1 className="text-3xl font-bold text-indigo-400">Loading...</h1> : 
             <>
                 {questionElements}
                 {isQuizBeingChecked ? playAgainButton : checkAnswersButton}
