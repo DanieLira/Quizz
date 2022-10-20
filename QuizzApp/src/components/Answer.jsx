@@ -19,10 +19,22 @@ export default function Answer(props){
         }
     }
 
+    function sanitizeString(text){
+        return (
+            text.replaceAll("&quot;",'"')
+            .replaceAll("&#039;","'")
+            .replaceAll("&rsquo;","'")
+            .replaceAll("&aacute;","á")
+            .replaceAll("&eacute;","é")
+            .replaceAll("&iacute;","í")
+            .replaceAll("&oacute;","ó")
+            .replaceAll("&uacute;","ú")
+        )
+    }
     
     const classes = `${getButtonClass()}`
-    //TODO: CREATE A FUNCTION TO SANITIZE STRINGS
-    const answerDescription = props.description.replaceAll("&quot;",'"').replaceAll("&#039;","'").replaceAll("&rsquo;","’")
+    
+    const answerDescription = sanitizeString(props.description)
 
     return(
         <button 

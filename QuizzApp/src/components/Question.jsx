@@ -19,6 +19,19 @@ export default function Question(props){
         setSelectedAnswser(name)
     }
 
+    function sanitizeString(text){
+        return (
+            text.replaceAll("&quot;",'"')
+            .replaceAll("&#039;","'")
+            .replaceAll("&rsquo;","'")
+            .replaceAll("&aacute;","á")
+            .replaceAll("&eacute;","é")
+            .replaceAll("&iacute;","í")
+            .replaceAll("&oacute;","ó")
+            .replaceAll("&uacute;","ú")
+        )
+    }
+
     const answerElements = props.data.incorrect_answers.map((elem, index)=> {
         return (
             <Answer 
@@ -43,8 +56,8 @@ export default function Question(props){
         />
     )
     
-    const questionDescription = props.data.question.replaceAll("&quot;",'"').replaceAll("&#039;","'").replaceAll("&rsquo;","'")
-    
+    const questionDescription = sanitizeString(props.data.question)
+
     //Insert the correct answer into a random position
     answerElements.splice(randomIndex, 0, correctAnswer)
 
