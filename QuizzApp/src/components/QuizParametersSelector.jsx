@@ -27,7 +27,7 @@ export default function QuizParametersSelector(props) {
         <div className="flex flex-col items-center">
             <div className="flex flex-col items-center">
                 <div className="w-full flex flex-col items-start">
-                    <label className="my-2" htmlFor="difficulty">Difficulty:</label>
+                    <label className="my-2 dark:text-slate-100" htmlFor="difficulty">Difficulty:</label>
                     <select
                         id="difficulty"
                         value={parametersData.difficulty}
@@ -42,7 +42,7 @@ export default function QuizParametersSelector(props) {
                     </select>
                 </div>
                 <div className="my-5 w-full flex flex-col items-start">
-                    <label className="my-2" htmlFor="numberOfQuestions">Number of questions:</label>
+                    <label className="my-2 dark:text-slate-100" htmlFor="numberOfQuestions">Number of questions:</label>
                     <input
                         id="numberOfQuestions"
                         name="numberOfQuestions"
@@ -55,7 +55,7 @@ export default function QuizParametersSelector(props) {
                     />
                 </div>
                 <div className="w-full flex flex-col items-start">
-                    <label className="my-2" htmlFor="category">Category:</label>
+                    <label className="my-2 dark:text-slate-100" htmlFor="category">Category:</label>
                     <select
                         id="category"
                         value={parametersData.category}

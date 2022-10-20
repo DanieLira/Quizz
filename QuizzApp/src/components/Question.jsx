@@ -68,7 +68,7 @@ export default function Question(props){
 
     return(
         <div>
-            <h3 className="font-bold text-xl my-3 max-w-4xl">{questionDescription}</h3>
+            <h3 className="font-bold text-xl my-3 max-w-4xl dark:text-slate-100">{questionDescription}</h3>
             {answerElements}
             <hr className="bg-indigo-200 my-5"/>
         </div>

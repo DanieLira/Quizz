@@ -5,9 +5,9 @@ export default function Answer(props){
     function getButtonClass(){
         if(props.isBeingChecked){
 
-            if(props.isCorrect) return "bg-green-300"
+            if(props.isCorrect) return "bg-green-300 dark:text-slate-800"
             
-            if(!props.isCorrect && props.selected) return "bg-red-300"
+            if(!props.isCorrect && props.selected) return "bg-red-300 dark:text-slate-800"
             
             return "opacity-50"
 
@@ -15,7 +15,7 @@ export default function Answer(props){
 
             if(props.selected) return "bg-indigo-400"
 
-            return "border border-violet-900 hover:bg-indigo-200"
+            return "border border-violet-900 hover:bg-indigo-200 dark:border-violet-200 dark:hover:bg-indigo-400"
         }
     }
 
@@ -39,7 +39,7 @@ export default function Answer(props){
     return(
         <button 
             name={props.description}
-            className={`${classes} rounded-lg w-auto h-7 mx-4 px-8`}
+            className={`${classes} rounded-lg w-auto h-7 mx-4 px-8 dark:text-slate-100`}
             onClick={ event => props.handleClick(event, props.isCorrect)}
             disabled={props.isBeingChecked}>  
             {answerDescription}

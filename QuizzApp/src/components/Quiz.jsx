@@ -50,7 +50,7 @@ export default function Quiz(props){
     
     const playAgainButton = (
         <div className="w-full flex  flex-col items-center">
-            <h4>You scored {score}/{questionElements.length} correct answers</h4>
+            <h4 className="dark:text-slate-100">You scored {score}/{questionElements.length} correct answers</h4>
             <button className="bg-indigo-600 w-72 h-14 rounded-2xl text-white my-4 text-xl" onClick={props.setQuiz}>Play Again</button>
         </div>
     )
